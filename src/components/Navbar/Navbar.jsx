@@ -2,10 +2,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import NavItems from "./NavItems";
 import useAuth from "../../hooks/useAuth";
+import useRole from "../../hooks/useRole";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
+  const [role] = useRole();
+
+  console.log(user);
 
   return (
     <nav className="relative bg-white shadow dark:bg-gray-800">
@@ -72,9 +76,15 @@ const Navbar = () => {
           >
             <div className="flex flex-col items-center justify-center -mx-6 lg:flex-row lg:items-center lg:mx-8">
               <NavItems to="/">Home</NavItems>
-              <NavItems to="/login">Login</NavItems>
-              <NavItems to="/register">Register</NavItems>
+              <NavItems to="/about">About</NavItems>
+              <NavItems to="/contact-us">Contact Us</NavItems>
               <NavItems to="/dashboard">Dashboard</NavItems>
+              {!user && (
+                <>
+                  <NavItems to="/login">Login</NavItems>
+                  <NavItems to="/register">Register</NavItems>
+                </>
+              )}
             </div>
 
             <div className="flex justify-center items-center mt-4 lg:mt-0">
@@ -99,16 +109,19 @@ const Navbar = () => {
 
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow left-1/2 transform -translate-x-1/2 lg:left-auto lg:transform-none"
+                  className="menu menu-sm dropdown-content bg-gradient-to-r from-indigo-100 to-violet-100 rounded-box z-[1] mt-3 w-52 p-2 shadow left-1/2 transform -translate-x-1/2 lg:left-auto lg:transform-none"
                 >
                   <li>
                     <Link to="/profile" className="justify-between">
-                      Profile
-                      <span className="badge">{user?.displayName}</span>
+                      {user?.displayName}
+                      <span className="badge bg-indigo-300">
+                        {role.charAt(0).toUpperCase() +
+                          role.slice(1).toLowerCase()}
+                      </span>
                     </Link>
                   </li>
                   <li>
-                    <a>Settings</a>
+                    <a>Profile Settings</a>
                   </li>
                   <li>
                     <button onClick={logOut}>Logout</button>

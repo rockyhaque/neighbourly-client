@@ -166,9 +166,6 @@ const Register = () => {
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       Password
                     </label>
-                    <a href="#" className="text-xs text-gray-500">
-                      Forget Password?
-                    </a>
                   </div>
 
                   <div className="relative">

@@ -4,51 +4,57 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import toast from "react-hot-toast";
-import { imageUpload } from "../../api/utils";
 import useAuth from "../../hooks/useAuth";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
 
 const Login = () => {
-  const [error, setError] = useState("");
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const {
-    createUser,
-    signInWithGoogle,
-    updateUserProfile,
-    loading,
-    setLoading,
-  } = useAuth();
+  const from = location?.state || "/";
+  const { signInWithGoogle, signIn, loading, setLoading, resetPassword } =
+    useAuth();
 
   //react hook form
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm();
 
   const onSubmit = async (data) => {
-    const { email, name, password } = data;
-    const image = data.image[0];
+    const { email, password } = data;
 
     try {
       setLoading(true);
 
-      // Upload img & get the live url
-      const image_url = await imageUpload(image);
+      // sign in user
+      await signIn(email, password);
 
-      // user Registration
-      const result = await createUser(email, password);
-      console.log(result);
-
-      // save username and photo in firebase
-      await updateUserProfile(name, image_url);
-      navigate("/");
-      toast.success("Sign Up Successfull!");
+      navigate(from);
+      toast.success("Sign In Successfull!");
     } catch (err) {
       console.log(err);
       toast.success(err.message);
+      setLoading(false);
+    }
+  };
+
+  const handleResetPassword = async () => {
+    const email = getValues("email");
+    if (!email) {
+      return toast.error("Please write your email first!");
+    }
+
+    try {
+      await resetPassword(email);
+      toast.success("Please check your email!");
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+      setLoading(false);
     }
   };
 
@@ -82,7 +88,7 @@ const Login = () => {
                 <img src="./logo.png" alt="" className="w-16 h-16" />
               </div>
               <p className="text-xl text-gray-600 text-center">
-                Welcome to Neighbourly!
+                Welcome back to Neighbourly!
               </p>
 
               {/* Google Authentication */}
@@ -151,9 +157,13 @@ const Login = () => {
                     <label className="block text-gray-700 text-sm font-bold mb-2">
                       Password
                     </label>
-                    <a href="#" className="text-xs text-gray-500">
+                    <button
+                      onClick={handleResetPassword}
+                      href="#"
+                      className="text-xs text-gray-500"
+                    >
                       Forget Password?
-                    </a>
+                    </button>
                   </div>
 
                   <div className="relative">
