@@ -7,6 +7,10 @@ import Register from "../pages/Register/Register";
 import Profile from "../pages/Profile/Profile";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
+import MyBookedWorkers from "../pages/Dashboard/Resident/MyBookedWorkers";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import OnProgress from "../pages/Dashboard/Worker/OnProgress";
+import PastWorks from "../pages/Dashboard/Worker/PastWorks";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +57,27 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "on-progress",
+        element: <OnProgress />
+      },
+      {
+        path: "past-works",
+        element: <PastWorks />
+      },
+      
+
+      // resident routes
+      {
+        path: "my-booked-workers",
+        element: <MyBookedWorkers />
+      },
+
+      // admin routes
+      {
+        path: "manage-users",
+        element: <ManageUsers />
+      }
     ]
   }
 ]);
