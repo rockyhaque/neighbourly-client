@@ -4,6 +4,8 @@ const SectionTitle = ({heading, description}) => {
             <h3 className="text-base md:text-lg font-semibold py-4 font-nunitoSans">{heading}</h3>
             <p className="font-roboto">{description}</p>
         </div>
+        
+        
     );
 };
 

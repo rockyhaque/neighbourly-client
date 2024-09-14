@@ -13,6 +13,7 @@
     "@tanstack/react-query": "^5.55.3",
     "aos": "^2.3.4",
     "axios": "^1.7.7",
+    "date-fns": "^3.6.0",
     "firebase": "^10.13.1",
     "nodemailer": "^6.9.15",
     "query-string": "^9.1.0",

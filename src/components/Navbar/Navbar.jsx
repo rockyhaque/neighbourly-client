@@ -9,7 +9,6 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
   const [role] = useRole();
 
-  console.log(user);
 
   return (
     <nav className="relative bg-white shadow dark:bg-gray-800">

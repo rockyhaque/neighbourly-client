@@ -3,46 +3,48 @@ import { axiosSecure } from "../../hooks/useAxiosSecure";
 import useRole from "../../hooks/useRole";
 import useAuth from "./../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   const { user } = useAuth();
   const [role] = useRole();
 
-  // Apply applyRequst
-  // const applyRequst = async () => {
-  //   try {
-  //     const currentUser = {
-  //       email: user?.email,
-  //       role: "worker",
-  //       status: "Requested",
-  //     };
-  //     const { data } = await axiosSecure.put(`/user`, currentUser);
-  //     if (data.modifiedCount > 0) {
-  //       toast.success("Success! Please wait for admin confirmation.");
-  //     } else {
-  //       toast.success("Please wait for admin approval ⌛");
-  //     }
-  //   } catch (err) {
-  //     toast.error(err.messsage);
-  //   }
-  // };
+  // Apply Request
+  const applyRequst = async () => {
+    try {
+      const currentUser = {
+        email: user?.email,
+        role: "worker",
+        status: "Requested",
+      };
+      const { data } = await axiosSecure.put(`/user`, currentUser);
+      console.log(data)
+      if (data.modifiedCount > 0) {
+        toast.success("Success! Please wait for admin confirmation.");
+      } else {
+        toast.success("Please wait for admin approval ⌛");
+      }
+    } catch (err) {
+      toast.error(err.messsage);
+    }
+  };
 
   // handle Apply Worker Modal
-  // const handleApplyWorker = async () => {
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to revert this!",
-  //     icon: "question",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#6FC276",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Apply",
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       applyRequst();
-  //     }
-  //   });
-  // };
+  const handleApplyWorker = async () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#4B0082",
+      cancelButtonColor: "#FA003F",
+      confirmButtonText: "Apply",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        applyRequst();
+      }
+    });
+  };
 
   return (
     <div>
@@ -85,16 +87,16 @@ const HeroSection = () => {
 
           {!user && (
             <div className="flex justify-center items-center w-full md:w-1/4 rounded-xl bg-gradient-to-tr from-pink-300 to-blue-300 p-0.5 shadow-lg mb-10 mx-auto">
-              <button className="flex-1 font-bold text-base md:text-xl bg-white px-2 py-2 rounded-xl hover:shadow-lg hover:bg-indigo-200">
-                Create an account / Sign In
-              </button>
+              <Link to="/register" className="flex-1 font-bold text-base md:text-xl bg-white px-2 py-2 rounded-xl hover:shadow-lg hover:bg-indigo-200">
+                Sign Up / Sign In
+              </Link>
             </div>
           )}
 
           {user && role === "resident" && (
             <div className="flex justify-center items-center w-full md:w-1/4 rounded-xl bg-gradient-to-tr from-pink-300 to-blue-300 p-0.5 shadow-lg mb-10 mx-auto">
               <button
-                // onClick={handleApplyWorker}
+                onClick={handleApplyWorker}
                 className="flex-1 font-bold text-base md:text-xl bg-white px-2 py-2 rounded-xl hover:shadow-lg hover:bg-indigo-200"
               >
                 Join as a Worker
