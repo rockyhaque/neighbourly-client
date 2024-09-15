@@ -11,6 +11,7 @@ import MyBookedWorkers from "../pages/Dashboard/Resident/MyBookedWorkers";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import OnProgress from "../pages/Dashboard/Worker/OnProgress";
 import PastWorks from "../pages/Dashboard/Worker/PastWorks";
+import AddService from "../pages/Dashboard/Worker/AddService";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: "past-works",
         element: <PastWorks />
+      },
+      {
+        path: "add-service",
+        element: <AddService />
       },
       
 

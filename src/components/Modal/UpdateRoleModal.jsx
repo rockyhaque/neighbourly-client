@@ -80,7 +80,7 @@ const UpdateRoleModal = ({ user, isOpen, setIsOpen, refetch }) => {
             onClick={closeModal}
             className="px-4 py-2 text-gray-600 border border-gray-300 rounded-xl bg-white hover:bg-gray-100"
           >
-            Cancel
+            Close
           </button>
           <button
             onClick={handleUpdate}
