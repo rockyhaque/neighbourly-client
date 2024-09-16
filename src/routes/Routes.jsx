@@ -12,6 +12,7 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import OnProgress from "../pages/Dashboard/Worker/OnProgress";
 import PastWorks from "../pages/Dashboard/Worker/PastWorks";
 import AddService from "../pages/Dashboard/Worker/AddService";
+import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 
 export const router = createBrowserRouter([
   {
@@ -24,9 +25,17 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/service/:id",
+        element: (
+          <PrivateRoute>
+            <ServiceDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "/profile",
-        element: <Profile />
-      }
+        element: <Profile />,
+      },
     ],
   },
 
@@ -60,29 +69,28 @@ export const router = createBrowserRouter([
       },
       {
         path: "on-progress",
-        element: <OnProgress />
+        element: <OnProgress />,
       },
       {
         path: "past-works",
-        element: <PastWorks />
+        element: <PastWorks />,
       },
       {
         path: "add-service",
-        element: <AddService />
+        element: <AddService />,
       },
-      
 
       // resident routes
       {
         path: "my-booked-workers",
-        element: <MyBookedWorkers />
+        element: <MyBookedWorkers />,
       },
 
       // admin routes
       {
         path: "manage-users",
-        element: <ManageUsers />
-      }
-    ]
-  }
+        element: <ManageUsers />,
+      },
+    ],
+  },
 ]);

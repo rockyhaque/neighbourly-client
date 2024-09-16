@@ -1,7 +1,8 @@
 import Categories from "../../components/Categories/Categories";
 import HeroSection from "../../components/HeroSection/HeroSection";
 import Helmet from "react-helmet";
-import Workers from "../../components/Workers/Workers";
+import Services from "../../components/Services/Services";
+
 
 
 const Home = () => {
@@ -15,7 +16,9 @@ const Home = () => {
       <div className="my-10">
         <Categories />
       </div>
-      {/* <Workers /> */}
+
+      <Services />
+
       
     </div>
   );

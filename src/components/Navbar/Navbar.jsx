@@ -16,7 +16,7 @@ const Navbar = () => {
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex justify-center items-center gap-3">
-              <img className="w-auto h-8 md:h-8 " src="./logo.png" alt="logo" />
+              <img className="w-auto h-8 md:h-8 " src="/logo.png" alt="logo" />
               <p className="text-gray-300 font-semibold text-base md:text-xl font-nunitoSans">
                 Neighbourly
               </p>

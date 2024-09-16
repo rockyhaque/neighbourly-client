@@ -7,7 +7,7 @@ const Footer = () => {
           {/* Logo and About */}
           <div>
             <img
-              src="./logo.png"
+              src="/logo.png"
               alt="Neighbourly Logo"
               className="w-24 mb-6"
             />
