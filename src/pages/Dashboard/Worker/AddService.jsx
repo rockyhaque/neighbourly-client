@@ -25,7 +25,7 @@ const AddService = () => {
     },
     onSuccess: () => {
       toast.success("Service Added Successfully");
-      //   navigate('/dashboard/my-listings')
+      navigate("/dashboard/my-listings");
       setLoading(false);
     },
   });
@@ -76,7 +76,6 @@ const AddService = () => {
 
       // post request to server
       await mutateAsync(serviceData);
-
     } catch (err) {
       console.log(err);
       toast.error(err.message);

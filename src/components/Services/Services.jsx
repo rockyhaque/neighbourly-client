@@ -4,6 +4,7 @@ import ContainerLayout from "../../layouts/ContainerLayout";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import ServiceTableRow from "../Table/ServiceTableRow";
+import { ClimbingBoxLoader } from "react-spinners";
 
 const Services = () => {
   const axiosCommon = useAxiosCommon();
@@ -70,7 +71,6 @@ const Services = () => {
                           >
                             View Details
                           </th>
-                          
                         </tr>
                       </thead>
                       {services.map((service) => (
@@ -84,8 +84,16 @@ const Services = () => {
           </section>
         </div>
       ) : (
-        <div>
-          <h2>No Worker Available</h2> <p>Contact with us later.</p>
+        <div className="flex items-center justify-center mb-8">
+          <div className="text-center">
+            <div className="flex items-center justify-center">
+              <ClimbingBoxLoader size={12} color="#421d81" />
+            </div>
+            <h2 className="text-lg md:text-xl font-semibold text-gray-800">
+              No Worker Available
+            </h2>
+            <p className="text-gray-500">Contact with us later.</p>
+          </div>
         </div>
       )}
     </ContainerLayout>

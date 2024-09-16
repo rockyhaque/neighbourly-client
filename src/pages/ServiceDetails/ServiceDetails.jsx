@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import moment from "moment-timezone";
 // import { formatDistanceToNow } from "date-fns";
+import cover from '../../assets/img/hello.png'
 
 const ServiceDetails = () => {
   const { id } = useParams();
@@ -33,12 +34,12 @@ const ServiceDetails = () => {
   return (
     <>
       <div className=" z-10">
-        <section className="  ">
+        <section className="">
           <div
-            className="absolute top-0 w-full h-full bg-center bg-cover"
+            className="absolute top-0 w-full h-96 bg-center bg-cover"
             style={{
               backgroundImage:
-                'url("https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80")',
+                'url("https://i.ibb.co.com/N2wkrfP/hello.png")',
               zIndex: -1,
             }}
           >
@@ -47,30 +48,12 @@ const ServiceDetails = () => {
               className="w-full h-full absolute opacity-50 bg-black"
             />
           </div>
-          <div
-            className="top-20 bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-            style={{ transform: "translateZ(0px)" }}
-          >
-            <svg
-              className="absolute bottom-0 overflow-hidden"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-              version="1.1"
-              viewBox="0 0 2560 100"
-              x={0}
-              y={0}
-            >
-              <polygon
-                className="text-blueGray-200 fill-current"
-                points="2560 0 2560 100 0 100"
-              />
-            </svg>
-          </div>
+
         </section>
 
         <section className="relative py-16 ">
           <div className="container mx-auto px-4">
-            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-10 md:mt-64 -z-0">
+            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-10 md:mt-68 -z-0">
               <div className="px-6">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
@@ -88,7 +71,7 @@ const ServiceDetails = () => {
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 text-center lg:text-right lg:self-center">
-                    <div className="py-6 px-3 mt-10 sm:mt-0">
+                    <div className="py-0 md:py-6 px-3 mt-10 sm:mt-0">
                       <button className="relative px-4 py-2 text-sm text-indigo-600 font-semibold rounded-full border border-indigo-200 bg-white overflow-hidden transition-transform duration-300 ease-in-out hover:bg-indigo-600 hover:border-transparent hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
                         <div className="text-animation">
                           <span>M</span>
@@ -101,14 +84,14 @@ const ServiceDetails = () => {
                         </div>
                       </button>
                     </div>
-                    <div className="mb-2 ">
+                    <div className="mb-4 ">
                       <p>
                         {/* <span>Since</span> <span>{relativeTime}</span> */}
                       </p>
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-1">
-                    <div className="flex justify-center py-4 lg:pt-4 pt-8">
+                    <div className="flex justify-center py-4 lg:pt-4 pt-0">
                       <div className="mr-4 p-3 text-center">
                         <span className="badge animate-pulse shadow-md">
                           {service?.category}
@@ -123,7 +106,7 @@ const ServiceDetails = () => {
                     </div>
                   </div>
                 </div>
-                <div className="text-center mt-6">
+                <div className="text-center mt-0 md:mt-6">
                   <h3 className="text-xl md:text-3xl font-semibold leading-normal  mb-2">
                     {worker?.name}
                   </h3>
@@ -150,7 +133,7 @@ const ServiceDetails = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col md:flex-row justify-evenly">
+                  <div className="flex flex-col md:flex-row justify-evenly mt-4">
                     <div className="flex flex-col justify-center items-center">
                       <span className="text-base md:text-lg my-2 font-semibold">
                         Skills
@@ -204,7 +187,7 @@ const ServiceDetails = () => {
                   </div>
 
                   {/* Book Now */}
-                  <div className="mt-5 text-center">
+                  <div className="my-8 text-center">
                     <button
                       type="submit"
                       className="relative inline-flex items-center justify-start px-6 md:px-16 py-3 overflow-hidden font-medium transition-all bg-white border border-indigo-200 rounded hover:bg-white group"

@@ -14,7 +14,7 @@ const Sidebar = () => {
   const [role, isLoading] = useRole();
 
   return (
-    <div className="w-64 h-full bg-gradient-to-r from-neutral-900 to-slate-800  p-3 shadow-lg pt-10 flex flex-col justify-between">
+    <div className="w-64 h-full bg-gradient-to-r from-neutral-900 to-slate-800  p-3 shadow-lg pt-10 flex flex-col justify-between fixed">
       <div>
         <div className="flex justify-center items-center space-x-4 p-2 mb-5">
           <Link to="/" className="flex justify-center items-center gap-3">

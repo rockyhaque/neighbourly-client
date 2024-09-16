@@ -13,6 +13,7 @@ import OnProgress from "../pages/Dashboard/Worker/OnProgress";
 import PastWorks from "../pages/Dashboard/Worker/PastWorks";
 import AddService from "../pages/Dashboard/Worker/AddService";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
+import MyListings from "../pages/Dashboard/Worker/MyListings";
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
       {
         path: "add-service",
         element: <AddService />,
+      },
+      {
+        path: "my-listings",
+        element: <MyListings />,
       },
 
       // resident routes
