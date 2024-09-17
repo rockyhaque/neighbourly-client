@@ -1,14 +1,18 @@
 import { useParams } from "react-router-dom";
-import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import moment from "moment-timezone";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import ConfirmBookingModal from "../../components/Modal/ConfirmBookingModal/ConfirmBookingModal";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 // import { formatDistanceToNow } from "date-fns";
-import cover from '../../assets/img/hello.png'
+// import cover from "../../assets/img/hello.png";
 
 const ServiceDetails = () => {
   const { id } = useParams();
   const axiosCommon = useAxiosCommon();
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const {
     data: service = {},
@@ -22,6 +26,18 @@ const ServiceDetails = () => {
     },
   });
 
+  const handleConfirmBooking = async (bookingData) => {
+    try {
+      const response = await axiosCommon.post("/booking", bookingData);
+      if (response.data) {
+        toast.success("Booking Successful!");
+        setModalOpen(false); // Close the modal on successful booking
+      }
+    } catch (error) {
+      toast.error("Booking failed! Please try again.");
+    }
+  };
+
   // const registrationDate = new Date(service?.worker?.since);
   // const relativeTime = formatDistanceToNow(registrationDate, {
   //   addSuffix: true,
@@ -29,7 +45,9 @@ const ServiceDetails = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  const worker = service?.worker;
+  // console.log(service)
+
+  // const worker = service?.worker;
 
   return (
     <>
@@ -38,8 +56,7 @@ const ServiceDetails = () => {
           <div
             className="absolute top-0 w-full h-96 bg-center bg-cover"
             style={{
-              backgroundImage:
-                'url("https://i.ibb.co.com/N2wkrfP/hello.png")',
+              backgroundImage: 'url("https://i.ibb.co.com/N2wkrfP/hello.png")',
               zIndex: -1,
             }}
           >
@@ -48,7 +65,6 @@ const ServiceDetails = () => {
               className="w-full h-full absolute opacity-50 bg-black"
             />
           </div>
-
         </section>
 
         <section className="relative py-16 ">
@@ -59,8 +75,8 @@ const ServiceDetails = () => {
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                     <div className="-mt-10">
                       <div className="avatar">
-                        <div className="w-24 rounded-full">
-                          <img src={worker?.image} />
+                        <div className="w-24 rounded-full shadow-xl">
+                          <img src={service?.worker?.image} className="" />
                         </div>
                       </div>
                       <div className="flex justify-center items-center">
@@ -108,13 +124,13 @@ const ServiceDetails = () => {
                 </div>
                 <div className="text-center mt-0 md:mt-6">
                   <h3 className="text-xl md:text-3xl font-semibold leading-normal  mb-2">
-                    {worker?.name}
+                    {service?.worker?.name}
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-1 text-blueGray-400 font-bold uppercase">
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400" />
                     {service?.address}
                   </div>
-                  <div className="mb-2 ">{worker?.email}</div>
+                  <div className="mb-2 ">{service?.worker?.email}</div>
                   <div className="mb-2 ">{service?.phone}</div>
                 </div>
                 <div className="mt-10 py-5 ">
@@ -189,7 +205,8 @@ const ServiceDetails = () => {
                   {/* Book Now */}
                   <div className="my-8 text-center">
                     <button
-                      type="submit"
+                      type="button"
+                      onClick={() => setModalOpen(true)}
                       className="relative inline-flex items-center justify-start px-6 md:px-16 py-3 overflow-hidden font-medium transition-all bg-white border border-indigo-200 rounded hover:bg-white group"
                     >
                       <span className="w-48 h-48 rounded rotate-[-40deg] bg-indigo-500 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
@@ -198,6 +215,16 @@ const ServiceDetails = () => {
                       </span>
                     </button>
                   </div>
+
+                  {/* Booking Modal */}
+                  {isModalOpen && (
+                    <ConfirmBookingModal
+                      service={service}
+                      worker={service.worker}
+                      onConfirm={handleConfirmBooking}
+                      onClose={() => setModalOpen(false)} // Close modal function
+                    />
+                  )}
                 </div>
               </div>
             </div>

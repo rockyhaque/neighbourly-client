@@ -70,6 +70,7 @@ const categoryColors = {
 };
 
 const ServiceTableRow = ({ service }) => {
+  console.log(service)
   return (
     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 font-roboto ">
       <tr>

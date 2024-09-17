@@ -3,6 +3,7 @@ import { categories } from "../Categories/CategoriesData";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import PropTypes from "prop-types";
+import './UpdateRoleModal';
 
 const ServiceUpdateModal = ({
   service,

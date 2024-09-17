@@ -47,6 +47,7 @@ const AddService = () => {
     const availability_status = form.availability_status.value;
     const start_time = form.startTime.value;
     const end_time = form.endTime.value;
+    const rate = 500;
     const worker = {
       name: user?.displayName,
       image: user?.photoURL,
@@ -71,6 +72,7 @@ const AddService = () => {
         availability_status,
         start_time,
         end_time,
+        rate,
         worker,
       };
 

@@ -8,9 +8,9 @@ const WorkerMenu = () => {
   return (
     <>
       <MenuItem icon={RiProgress1Line} label="On Progress" address="on-progress" />
-      <MenuItem icon={AiOutlineFileDone} label="Past Works" address="past-works" />
       <MenuItem icon={MdPlaylistAdd} label="Add Service" address="add-service" />
       <MenuItem icon={RiListSettingsLine} label="My Listings" address="my-listings" />
+      <MenuItem icon={AiOutlineFileDone} label="Manage Bookings" address="manage-bookings" />
     </>
   );
 };

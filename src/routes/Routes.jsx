@@ -10,10 +10,10 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import MyBookedWorkers from "../pages/Dashboard/Resident/MyBookedWorkers";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import OnProgress from "../pages/Dashboard/Worker/OnProgress";
-import PastWorks from "../pages/Dashboard/Worker/PastWorks";
 import AddService from "../pages/Dashboard/Worker/AddService";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 import MyListings from "../pages/Dashboard/Worker/MyListings";
+import ManageBookings from "../pages/Dashboard/Worker/ManageBookings";
 
 export const router = createBrowserRouter([
   {
@@ -73,16 +73,16 @@ export const router = createBrowserRouter([
         element: <OnProgress />,
       },
       {
-        path: "past-works",
-        element: <PastWorks />,
-      },
-      {
         path: "add-service",
         element: <AddService />,
       },
       {
         path: "my-listings",
         element: <MyListings />,
+      },
+      {
+        path: "manage-bookings",
+        element: <ManageBookings />,
       },
 
       // resident routes
