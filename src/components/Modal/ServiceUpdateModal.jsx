@@ -29,7 +29,7 @@ const ServiceUpdateModal = ({
     end_time: "",
   });
 
-  // Populate the form with existing data when the modal opens
+  
   useEffect(() => {
     if (service) {
       setFormData({

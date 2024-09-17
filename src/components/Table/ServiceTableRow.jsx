@@ -79,7 +79,7 @@ const ServiceTableRow = ({ service }) => {
             <div className="flex items-center gap-x-2">
               <img
                 className="object-cover w-10 h-10 rounded-full"
-                src={service?.worker?.image}
+                src={service?.worker?.image} 
                 alt={service?.worker?.name}
               />
               <div>

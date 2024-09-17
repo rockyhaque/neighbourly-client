@@ -8,11 +8,13 @@ import ConfirmBookingModal from "../../components/Modal/ConfirmBookingModal/Conf
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 // import { formatDistanceToNow } from "date-fns";
 // import cover from "../../assets/img/hello.png";
+import useRole from './../../hooks/useRole';
 
 const ServiceDetails = () => {
   const { id } = useParams();
   const axiosCommon = useAxiosCommon();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [role] = useRole();
 
   const {
     data: service = {},
@@ -206,8 +208,9 @@ const ServiceDetails = () => {
                   <div className="my-8 text-center">
                     <button
                       type="button"
+                      // disabled={role === "worker" || "admin"}
                       onClick={() => setModalOpen(true)}
-                      className="relative inline-flex items-center justify-start px-6 md:px-16 py-3 overflow-hidden font-medium transition-all bg-white border border-indigo-200 rounded hover:bg-white group"
+                      className="relative inline-flex items-center justify-start px-6 md:px-16 py-3 overflow-hidden font-medium transition-all bg-white border border-indigo-200 rounded hover:bg-white group disabled:cursor-not-allowed"
                     >
                       <span className="w-48 h-48 rounded rotate-[-40deg] bg-indigo-500 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0"></span>
                       <span className="relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white">

@@ -1,9 +1,12 @@
+import toast from "react-hot-toast";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 import SectionHeading from "../../../components/SectionHeading/SectionHeading";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "./../../../hooks/useAuth";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
+import { RxCrossCircled } from "react-icons/rx";
+import Swal from "sweetalert2";
 
 const MyBookedWorkers = () => {
   const { user } = useAuth();
@@ -21,6 +24,51 @@ const MyBookedWorkers = () => {
     },
   });
 
+    // Delete Mutation
+    const { mutateAsync } = useMutation({
+        mutationFn: async (id) => {
+          const { data } = await axiosSecure.delete(`/booking/${id}`);
+          return data;
+        },
+        onSuccess: async (data) => {
+          console.log(data);
+          refetch();
+        //   toast.success("Booking Canceled Successfully");
+        },
+      });
+    
+      // Handle Delete
+      const handleDelete = async (id) => {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#FA003F",
+          cancelButtonColor: "#4B0082",
+          confirmButtonText: "Yes, cancel it!",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            try {
+              await mutateAsync(id);
+              Swal.fire({
+                title: "Canceled!",
+                text: "Booking Canceled Successfully",
+                icon: "success",
+                confirmButtonColor: "#4B0082",
+              });
+            } catch (err) {
+              console.log(err);
+              Swal.fire(
+                "Error!",
+                "There was an issue deleting the service.",
+                "error"
+              );
+            }
+          }
+        });
+      };
+
   console.log(bookings);
 
   if (isLoading) return <LoadingSpinner />;
@@ -30,7 +78,7 @@ const MyBookedWorkers = () => {
       <Helmet>
         <title>My Bookings</title>
       </Helmet>
-      <SectionHeading heading="My Booked Workers"/>
+      <SectionHeading heading="My Booked Workers" />
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -38,9 +86,10 @@ const MyBookedWorkers = () => {
             <tr>
               <th>#</th>
               <th>Service Info</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
+              <th>Service Title</th>
+              <th>Category</th>
+              <th>Phone No</th>
+              <th>Cancle</th>
             </tr>
           </thead>
           <tbody>
@@ -48,9 +97,7 @@ const MyBookedWorkers = () => {
 
             {bookings.map((booking, index) => (
               <tr key={booking._id}>
-                <th>
-                  {index + 1}
-                </th>
+                <th>{index + 1}</th>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -62,22 +109,25 @@ const MyBookedWorkers = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{booking?.service?.worker?.name}</div>
-                      <div className="text-sm opacity-50">{booking?.service?.worker?.email}</div>
+                      <div className="font-bold">
+                        {booking?.service?.worker?.name}
+                      </div>
+                      <div className="text-sm opacity-50">
+                        {booking?.service?.worker?.email}
+                      </div>
                     </div>
                   </div>
                 </td>
+                <td>{booking?.service?.service_title}</td>
                 <td>
-                  Zemlak, Daniel and Leannon
-                  <br />
                   <span className="badge badge-ghost badge-sm">
-                    Desktop Support Technician
+                    {booking?.service?.category}
                   </span>
                 </td>
-                <td>Purple</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
+                <td>{booking?.service?.phone}</td>
+                <td>
+                  <RxCrossCircled onClick={() => handleDelete(booking._id)} size={20} className="hover:text-rose-700 hover:scale-110 cursor-pointer ml-3" />
+                </td>
               </tr>
             ))}
           </tbody>

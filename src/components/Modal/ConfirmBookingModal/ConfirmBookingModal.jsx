@@ -2,13 +2,16 @@ import { useState } from "react";
 import { TbCoinTaka } from "react-icons/tb";
 import useAuth from "./../../../hooks/useAuth";
 
-const ConfirmBookingModal = ({ service, worker, onConfirm, onClose }) => {
+
+const ConfirmBookingModal = ({ service, worker, onConfirm, onClose, }) => {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const { user } = useAuth();
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
 
     const bookingData = {
       resident: {
