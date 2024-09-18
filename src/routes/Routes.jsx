@@ -15,8 +15,8 @@ import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 import MyListings from "../pages/Dashboard/Worker/MyListings";
 import ManageBookings from "../pages/Dashboard/Worker/ManageBookings";
 import About from "../components/About/About";
-import WorkerRoute from "./WorkerRoute";
-import AdminRoute from "./AdminRoute";
+// import WorkerRoute from "./WorkerRoute";
+// import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -60,20 +60,12 @@ export const router = createBrowserRouter([
   // Dashboard Routes
   {
     path: "/dashboard",
-    element: (
-      <PrivateRoute>
-        <DashboardLayout />
-      </PrivateRoute>
-    ),
+    element: <DashboardLayout />,
     children: [
       // Worker Routes
       {
         index: true,
-        element: (
-          <PrivateRoute>
-            <Profile />
-          </PrivateRoute>
-        ),
+        element: <Profile />,
       },
       {
         path: "on-progress",
@@ -81,13 +73,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "add-service",
-        element: (
-          <PrivateRoute>
-            <WorkerRoute>
-              <AddService />
-            </WorkerRoute>
-          </PrivateRoute>
-        ),
+        element: <AddService />,
       },
       {
         path: "my-listings",
@@ -107,13 +93,7 @@ export const router = createBrowserRouter([
       // admin routes
       {
         path: "manage-users",
-        element: (
-          <PrivateRoute>
-            <AdminRoute>
-              <ManageUsers />
-            </AdminRoute>
-          </PrivateRoute>
-        ),
+        element: <ManageUsers />,
       },
     ],
   },
