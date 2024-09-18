@@ -10,7 +10,7 @@ const Navbar = () => {
   const [role] = useRole();
 
   return (
-    <nav className="relative bg-white shadow dark:bg-gray-800">
+    <nav className="relative bg-white  dark:bg-gray-800 shadow-2xl shadow-indigo-100 sticky z-50 top-0">
       <div className="max-w-screen-xl px-6 py-4 mx-auto">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
@@ -75,7 +75,7 @@ const Navbar = () => {
             <div className="flex flex-col items-center justify-center -mx-6 lg:flex-row lg:items-center lg:mx-8">
               <NavItems to="/">Home</NavItems>
               <NavItems to="/about">About</NavItems>
-              <NavItems to="/contact-us">Contact Us</NavItems>
+              <NavItems to="/profile">Update Profile</NavItems>
               <NavItems to="/dashboard">Dashboard</NavItems>
               {!user && (
                 <>
@@ -119,7 +119,7 @@ const Navbar = () => {
                     </div>
                   </li>
                   <li>
-                    <Link to="/profile">
+                    <Link to="/profile" >
                       <p>Profile Settings</p>
                     </Link>
                   </li>

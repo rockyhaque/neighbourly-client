@@ -77,7 +77,7 @@ const MyListings = () => {
       return data;
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       refetch();
       toast.success("Service Deleted Successfully");
     },
@@ -104,7 +104,7 @@ const MyListings = () => {
             confirmButtonColor: "#4B0082",
           });
         } catch (err) {
-          console.log(err);
+          // console.log(err);
           Swal.fire(
             "Error!",
             "There was an issue deleting the service.",
@@ -115,7 +115,7 @@ const MyListings = () => {
     });
   };
 
-  console.log(services);
+  // console.log(services);
 
   if (isLoading) return <LoadingSpinner />;
 

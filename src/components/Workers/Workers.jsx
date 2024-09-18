@@ -4,7 +4,7 @@ import useRole from "../../hooks/useRole";
 const Workers = () => {
   const { user } = useAuth();
   const [role] = useRole();
-  console.log(role);
+  // console.log(role);
 
   return (
     <div>

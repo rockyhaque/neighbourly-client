@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet";
 import moment from "moment";
 import useAuth from "../../hooks/useAuth";
 import { imageUpload } from "../../api/utils";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Profile = () => {
   const { user, loading, setLoading } = useAuth();
@@ -77,7 +78,7 @@ const Profile = () => {
   };
 
   if (!user) {
-    return <span className="loading loading-bars loading-lg"></span>;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -103,6 +104,7 @@ const Profile = () => {
                 className="h-32 w-32 bg-white p-2 rounded-full"
                 src={user?.photoURL}
                 alt={user.displayName}
+                referrerPolicy="no-referrer"
               />
             </div>
 

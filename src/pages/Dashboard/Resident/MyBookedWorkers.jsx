@@ -32,7 +32,7 @@ const MyBookedWorkers = () => {
       return data;
     },
     onSuccess: async (data) => {
-      console.log(data);
+      // console.log(data);
       refetch();
       //   toast.success("Booking Canceled Successfully");
     },
@@ -59,7 +59,7 @@ const MyBookedWorkers = () => {
             confirmButtonColor: "#4B0082",
           });
         } catch (err) {
-          console.log(err);
+          // console.log(err);
           Swal.fire(
             "Error!",
             "There was an issue deleting the service.",
@@ -70,7 +70,7 @@ const MyBookedWorkers = () => {
     });
   };
 
-  console.log(bookings);
+  // console.log(bookings);
 
   if (isLoading) return <LoadingSpinner />;
 

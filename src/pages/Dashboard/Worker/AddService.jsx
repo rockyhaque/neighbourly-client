@@ -79,12 +79,12 @@ const AddService = () => {
       // post request to server
       await mutateAsync(serviceData);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err.message);
       setLoading(false);
     }
 
-    console.log(serviceData);
+    // console.log(serviceData);
   };
 
   return (

@@ -18,7 +18,7 @@ const HeroSection = () => {
         status: "Requested",
       };
       const { data } = await axiosSecure.put(`/user`, currentUser);
-      console.log(data)
+      // console.log(data)
       if (data.modifiedCount > 0) {
         toast.success("Success! Please wait for admin confirmation.");
       } else {
@@ -48,7 +48,7 @@ const HeroSection = () => {
 
   return (
     <div>
-      <section className="pt-8 lg:py-16 bg-[url('https://pagedone.io/asset/uploads/1691055810.png')] bg-center bg-cover">
+      <section className="pt-8 py-8 bg-[url('https://pagedone.io/asset/uploads/1691055810.png')] bg-center bg-cover">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative text-center">
           <div className="border border-indigo-600 p-1 w-60 mx-auto rounded-full flex items-center justify-between mb-4">
             <span className="font-inter text-xs font-medium text-gray-900 ml-3">
@@ -56,7 +56,7 @@ const HeroSection = () => {
             </span>
             <a
               href="javascript:;"
-              className="w-8 h-8 rounded-full flex justify-center items-center bg-indigo-600"
+              className="w-8 h-8 rounded-full flex justify-center items-center bg-indigo-600 rotate-90"
             >
               <svg
                 width={17}

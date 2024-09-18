@@ -21,7 +21,7 @@ const Services = () => {
 
   if (isLoading) return <LoadingSpinner />;
 
-  console.log(services);
+  // console.log(services);
 
   return (
     <ContainerLayout>

@@ -35,7 +35,7 @@ const Login = () => {
       navigate(from);
       toast.success("Sign In Successfull!");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.success(err.message);
       setLoading(false);
     }
@@ -52,7 +52,7 @@ const Login = () => {
       toast.success("Please check your email!");
       setLoading(false);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error(err.message);
       setLoading(false);
     }
@@ -66,7 +66,7 @@ const Login = () => {
       navigate("/");
       toast.success("Sign Up Successfull!");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.success(err.message);
     }
   };

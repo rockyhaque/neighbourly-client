@@ -2,7 +2,7 @@ import Categories from "../../components/Categories/Categories";
 import HeroSection from "../../components/HeroSection/HeroSection";
 import Helmet from "react-helmet";
 import Services from "../../components/Services/Services";
-import OurSpecialty from "../../components/OurSpecialty/OurSpecialty";
+import OurSpeciality from "../../components/OurSpeciality/OurSpeciality";
 import FAQ from "../../components/FAQ/FAQ";
 
 const Home = () => {
@@ -19,9 +19,9 @@ const Home = () => {
 
       <Services />
 
-      <OurSpecialty />
-
       <FAQ />
+      <OurSpeciality />
+
 
 
     </div>

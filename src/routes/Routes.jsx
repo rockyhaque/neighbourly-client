@@ -14,6 +14,9 @@ import AddService from "../pages/Dashboard/Worker/AddService";
 import ServiceDetails from "../pages/ServiceDetails/ServiceDetails";
 import MyListings from "../pages/Dashboard/Worker/MyListings";
 import ManageBookings from "../pages/Dashboard/Worker/ManageBookings";
+import About from "../components/About/About";
+import WorkerRoute from "./WorkerRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +39,10 @@ export const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
     ],
   },
@@ -74,7 +81,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "add-service",
-        element: <AddService />,
+        element: (
+          <PrivateRoute>
+            <WorkerRoute>
+              <AddService />
+            </WorkerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "my-listings",
@@ -94,7 +107,13 @@ export const router = createBrowserRouter([
       // admin routes
       {
         path: "manage-users",
-        element: <ManageUsers />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -40,14 +40,14 @@ const Register = () => {
 
       // user Registration
       const result = await createUser(email, password);
-      console.log(result);
+      // console.log(result);
 
       // save username and photo in firebase
       await updateUserProfile(name, image_url);
       navigate("/");
       toast.success("Sign Up Successfull!");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.success(err.message);
     }
   };

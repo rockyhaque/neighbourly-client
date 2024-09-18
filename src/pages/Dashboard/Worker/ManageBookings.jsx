@@ -31,8 +31,8 @@ const ManageBookings = () => {
       const { data } = await axiosSecure.delete(`/booking/${id}`);
       return data;
     },
-    onSuccess: async (data) => {
-      console.log(data);
+    onSuccess: async () => {
+      // console.log(data);
       refetch();
       //   toast.success("Booking Canceled Successfully");
 
@@ -64,7 +64,7 @@ const ManageBookings = () => {
             confirmButtonColor: "#4B0082",
           });
         } catch (err) {
-          console.log(err);
+          // console.log(err);
           Swal.fire(
             "Error!",
             "There was an issue deleting the service.",
@@ -75,7 +75,7 @@ const ManageBookings = () => {
     });
   };
 
-  console.log(bookings);
+  // console.log(bookings);
 
   if (isLoading) return <LoadingSpinner />;
 
