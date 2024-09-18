@@ -13,7 +13,11 @@ const ManageBookings = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const { data: bookings = [], isLoading, refetch } = useQuery({
+  const {
+    data: bookings = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["my-bookings", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/manage-bookings/${user?.email}`);
@@ -21,50 +25,55 @@ const ManageBookings = () => {
     },
   });
 
-      // Delete Mutation
-      const { mutateAsync } = useMutation({
-        mutationFn: async (id) => {
-          const { data } = await axiosSecure.delete(`/booking/${id}`);
-          return data;
-        },
-        onSuccess: async (data) => {
-          console.log(data);
-          refetch();
-        //   toast.success("Booking Canceled Successfully");
-        },
-      });
-    
-      // Handle Delete
-      const handleDelete = async (id) => {
-        Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#FA003F",
-          cancelButtonColor: "#4B0082",
-          confirmButtonText: "Yes, cancel it!",
-        }).then(async (result) => {
-          if (result.isConfirmed) {
-            try {
-              await mutateAsync(id);
-              Swal.fire({
-                title: "Canceled!",
-                text: "Booking Canceled Successfully",
-                icon: "success",
-                confirmButtonColor: "#4B0082",
-              });
-            } catch (err) {
-              console.log(err);
-              Swal.fire(
-                "Error!",
-                "There was an issue deleting the service.",
-                "error"
-              );
-            }
-          }
-        });
-      };
+  // Delete Mutation
+  const { mutateAsync } = useMutation({
+    mutationFn: async (id) => {
+      const { data } = await axiosSecure.delete(`/booking/${id}`);
+      return data;
+    },
+    onSuccess: async (data) => {
+      console.log(data);
+      refetch();
+      //   toast.success("Booking Canceled Successfully");
+
+      // change booked service back to false
+      // await axiosSecure.patch(`/service/status/${bookings._id}`, {
+      //   status: false,
+      // });
+    },
+  });
+
+  // Handle Delete
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#FA003F",
+      cancelButtonColor: "#4B0082",
+      confirmButtonText: "Yes, cancel it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await mutateAsync(id);
+          Swal.fire({
+            title: "Canceled!",
+            text: "Booking Canceled Successfully",
+            icon: "success",
+            confirmButtonColor: "#4B0082",
+          });
+        } catch (err) {
+          console.log(err);
+          Swal.fire(
+            "Error!",
+            "There was an issue deleting the service.",
+            "error"
+          );
+        }
+      }
+    });
+  };
 
   console.log(bookings);
 
@@ -162,7 +171,11 @@ const ManageBookings = () => {
                     )}
                   </td>
                   <th>
-                    <MdOutlineAutoDelete onClick={()=> handleDelete(booking._id)} size={20} className="ml-3 hover:text-rose-500 hover:scale-110 cursor-pointer" />
+                    <MdOutlineAutoDelete
+                      onClick={() => handleDelete(booking._id)}
+                      size={20}
+                      className="ml-3 hover:text-rose-500 hover:scale-110 cursor-pointer"
+                    />
                   </th>
                 </tr>
               ))}

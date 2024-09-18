@@ -13,9 +13,9 @@ const categoryColors = {
     dot: "bg-blue-500",
   },
   Carpentry: {
-    bg: "bg-brown-100/60",
-    text: "text-brown-500",
-    dot: "bg-brown-500",
+    bg: "bg-blue-100/60",
+    text: "text-blue-200",
+    dot: "bg-blue-500",
   },
   Gardening: {
     bg: "bg-green-100/60",
@@ -70,7 +70,7 @@ const categoryColors = {
 };
 
 const ServiceTableRow = ({ service }) => {
-  console.log(service)
+  console.log(service);
   return (
     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 font-roboto ">
       <tr>
@@ -79,7 +79,8 @@ const ServiceTableRow = ({ service }) => {
             <div className="flex items-center gap-x-2">
               <img
                 className="object-cover w-10 h-10 rounded-full"
-                src={service?.worker?.image} 
+                referrerPolicy="no-referrer"
+                src={service?.worker?.image}
                 alt={service?.worker?.name}
               />
               <div>

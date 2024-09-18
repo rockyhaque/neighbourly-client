@@ -25,6 +25,7 @@ const ConfirmBookingModal = ({ service, worker, onConfirm, onClose, }) => {
         ...service,
       },
       bookingDate: new Date(),
+      status: true,
     };
 
     // Call the onConfirm function with bookingData

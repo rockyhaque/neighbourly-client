@@ -92,13 +92,9 @@ const ServiceDetails = () => {
                     <div className="py-0 md:py-6 px-3 mt-10 sm:mt-0">
                       <button className="relative px-4 py-2 text-sm text-indigo-600 font-semibold rounded-full border border-indigo-200 bg-white overflow-hidden transition-transform duration-300 ease-in-out hover:bg-indigo-600 hover:border-transparent hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
                         <div className="text-animation">
-                          <span>M</span>
+                          <span>N</span>
                           <span>e</span>
-                          <span>s</span>
-                          <span>s</span>
-                          <span>a</span>
-                          <span>g</span>
-                          <span>e</span>
+                          <span>w</span>
                         </div>
                       </button>
                     </div>
@@ -208,7 +204,7 @@ const ServiceDetails = () => {
                   <div className="my-8 text-center">
                     <button
                       type="button"
-                      // disabled={role === "worker" || "admin"}
+                      disabled={role === "worker" }
                       onClick={() => setModalOpen(true)}
                       className="relative inline-flex items-center justify-start px-6 md:px-16 py-3 overflow-hidden font-medium transition-all bg-white border border-indigo-200 rounded hover:bg-white group disabled:cursor-not-allowed"
                     >

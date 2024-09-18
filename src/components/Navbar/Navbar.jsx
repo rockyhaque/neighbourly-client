@@ -9,7 +9,6 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
   const [role] = useRole();
 
-
   return (
     <nav className="relative bg-white shadow dark:bg-gray-800">
       <div className="max-w-screen-xl px-6 py-4 mx-auto">
@@ -111,16 +110,18 @@ const Navbar = () => {
                   className="menu menu-sm dropdown-content bg-gradient-to-r from-indigo-100 to-violet-100 rounded-box z-[1] mt-3 w-52 p-2 shadow left-1/2 transform -translate-x-1/2 lg:left-auto lg:transform-none"
                 >
                   <li>
-                    <Link to="/profile" className="justify-between">
+                    <div className="justify-between">
                       {user?.displayName}
                       <span className="badge bg-indigo-300">
                         {role.charAt(0).toUpperCase() +
                           role.slice(1).toLowerCase()}
                       </span>
-                    </Link>
+                    </div>
                   </li>
                   <li>
-                    <a>Profile Settings</a>
+                    <Link to="/profile">
+                      <p>Profile Settings</p>
+                    </Link>
                   </li>
                   <li>
                     <button onClick={logOut}>Logout</button>
