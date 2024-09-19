@@ -29,6 +29,9 @@ const ManageUsers = () => {
     },
   });
 
+
+  console.log(users)
+
   // Mutation to delete user
   const deleteUserMutation = useMutation({
     mutationFn: async (id) => {
